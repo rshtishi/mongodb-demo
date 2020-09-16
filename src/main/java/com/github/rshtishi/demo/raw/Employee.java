@@ -1,9 +1,11 @@
 package com.github.rshtishi.demo.raw;
 
-import java.time.LocalDate;
+import org.springframework.data.annotation.Id;
 
 public class Employee {
 
+	@Id
+    private String _id;
 	private String employeeID;
 	private String firstname;
 	private String middlename;

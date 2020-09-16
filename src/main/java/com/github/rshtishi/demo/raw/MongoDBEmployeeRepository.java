@@ -50,7 +50,7 @@ public class MongoDBEmployeeRepository implements EmployeeRepository {
 	@Override
 	public void save(Employee employee) {
 		Document document = EmployeeHelper.transform(employee);
-		Bson filter = eq("employeeID","1");
+		Bson filter = eq("employeeID",employee.getEmployeeID());
 		if(getCollection().findOneAndReplace(filter, document)==null) {
 			getCollection().insertOne(document);
 		}
