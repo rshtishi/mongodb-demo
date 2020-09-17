@@ -69,6 +69,19 @@ class SpringDataEmployeeRepositoryTest {
 	
 	@Test
 	@Order(5)
+	void testFindEmployeeWithSalaryBetween() {
+		//setup
+		int minSal = 500;
+		int maxSal = 5000;
+		//execute
+		List<Employee> employees = employeeRepository.findEmployeeWithSalaryBetween(minSal, maxSal);
+		//verify
+		int expectedSize = 1;
+		assertEquals(expectedSize, employees.size());
+	}
+	
+	@Test
+	@Order(6)
 	void testRemove() {
 		//setup
 		String employeeID="1";
