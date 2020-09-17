@@ -1,4 +1,4 @@
-package com.github.rshtishi.demo.raw.mongotemplate;
+package com.github.rshtishi.demo.mongotemplate;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
@@ -18,12 +18,10 @@ public class MongoTemplateEmployeeRepository implements EmployeeRepository {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	@Value("${mongodb.employee.collection}")
-	private String collectionName;
 
 	@Override
 	public List<Employee> findAll() {
-		return mongoTemplate.findAll(Employee.class, collectionName);
+		return mongoTemplate.findAll(Employee.class);
 	}
 
 	@Override
@@ -33,7 +31,7 @@ public class MongoTemplateEmployeeRepository implements EmployeeRepository {
 
 	@Override
 	public long count() {
-		return mongoTemplate.count(new Query(), collectionName);
+		return mongoTemplate.count(new Query(), Employee.class);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.github.rshtishi.demo.raw.mongotemplate;
+package com.github.rshtishi.demo.springdata;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,15 +11,14 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.github.rshtishi.demo.mongotemplate.MongoTemplateEmployeeRepository;
 import com.github.rshtishi.demo.raw.Employee;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class MongoDBEmployeeRepositoryTest {
+class SpringDataEmployeeRepositoryTest {
 
 	@Autowired
-	private MongoTemplateEmployeeRepository employeeRepository;
+	private SpringDataEmployeeRepository employeeRepository;
 
 	@Test
 	@Order(1)
@@ -47,7 +46,7 @@ class MongoDBEmployeeRepositoryTest {
 
 	@Test
 	@Order(3)
-	void testFindById() {
+	void testFindByEmployeeID() {
 		// setup
 		String employeeID = "1";
 		// execute
@@ -67,16 +66,16 @@ class MongoDBEmployeeRepositoryTest {
 		long expectedTotal = 1L;
 		assertEquals(expectedTotal, total);
 	}
-
+	
 	@Test
 	@Order(5)
 	void testRemove() {
-		// setup
-		String employeeID = "1";
+		//setup
+		String employeeID="1";
 		Employee employee = employeeRepository.findByEmployeeID(employeeID);
-		// execute
+		//execute
 		employeeRepository.delete(employee);
-		// verify
+		//verify
 		int expectedSize = 0;
 		List<Employee> employees = employeeRepository.findAll();
 		assertEquals(expectedSize, employees.size());
